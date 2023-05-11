@@ -8,6 +8,7 @@
 <h3>Utilizando "case" Shell:</h3>
 
 ```
+
 case $1 in
 	GET)
 	cat apache.log | grep GET
@@ -28,6 +29,7 @@ case $1 in
 	*)
       echo "O parametro passado não é valido."
       ;;
+
 ```
 
 <h3>Tratando Strings:</h3>
@@ -36,13 +38,16 @@ case $1 in
 - Exemplo: "echo get | awk '{ print toupper($1) }'"
 
 <h3>Verificar o status HTTP:</h3>
+
 - Utilizamos o curl via terminal para pordemos verificar o status HTTP.
 - Exemplo: " curl --write-out %{http_code} --silent --output /dev/null http://localhost "
 - Codigo utilizado para verificação: 
+
 ```
+
 status_servidor(){
 	
-	local respota_http=$(curl --write-out %{http_code} --silent --output /dev/null 			http://localhost)
+	local respota_http=$(curl --write-out %{http_code} --silent --output /dev/null http://localhost)
 	
 	if [ $respota_http -eq 200 ]
 	then
@@ -55,6 +60,7 @@ status_servidor(){
 }
 
 status_servidor
+
 ```
 - Mas para que o sevidor estaja sempre rodando temos que por um temporizador para rodar esse script em alguns momentos. Utilizaremos o crontab.
 - Primeiro temos que mudar o status de permissão do script. Com: "chmod +x nome-do-script".
@@ -93,7 +99,7 @@ fi
 
 - Conseguimos visualizar o consumo de memoria do sistema utilizando o comando: "free | grep -i mem".
 
-<h3>Fazendo backup do banco</h3>
+<h3>Fazendo backup do banco:</h3>
 
 - Para acessar o banco utilizamos o codigo "sudo mysql -u root".
 - Para popular as tabelas utilize o comando "sudo mysql -u root nome-data-base < ~/local-onde-esta".
